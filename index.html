@@ -7,14 +7,26 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-
     <!-- Page Title -->
     <title>Giphy API Search</title>
   </head>
-  <body id >
+
+
+
+  <body id="wholePage">
+      <div class="jumbotron" id="header">
+        <h1>Giphy API Search</h1>
+        <h4>Click the buttons to display GIPHYs, Click the GIPHY to pause/play. Search to add a new button. </h4>
+      </div>
+
+
+      <form class="form-inline" id="search">
+          <div class="input">
+              <label for="input">Search</label>
+              <input type="text" id="input">
+          </div>
+      </form>
       <!-- Website Title -->
-    <h1>Giphy API Search</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
