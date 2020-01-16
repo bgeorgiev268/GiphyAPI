@@ -6,3 +6,31 @@
     padding-bottom: 15px;
     font-family: "Carrois Gothic SC", sans-seriF;
 }
+
+label {
+    font-size: 20px;
+}
+
+#show   {
+    margin-left: 10px;
+    margin-right:10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#search {
+    margin: 0 auto;
+    text-align: center;
+    font-family: "Carrois Gotich SC", sans-serif;
+}
+
+#gifArea    {
+    clear: both;
+    display: inline;
+    flex-wrap: wrap;
+}
+
+.giphy  {
+    padding: 5px;
+    width: 80%;
+}
