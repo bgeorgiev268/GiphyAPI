@@ -1,24 +1,33 @@
 //Create an array of strings for athletes
-var topics = ["Messi", "lewandowski", "Alphonso Davies", "Manuel Neuer", "Joshua Zirkzee" ]
+var topics = [
+    "Messi",
+    "lewandowski",
+    "Alphonso Davies",
+    "Manuel Neuer",
+    "Joshua Zirkzee"
+];
 //Create a variable for the button that the user can create and then click to display gifs from the GIPHY API.
 var athleteBtn;
 //create gif variable
 var athleteImage;
 
-function createButtons(){
-    $("athlete-btn-div").empty();
+function createButtons() {
+    console.log($("athlete-btn-div"))
+    $("#athlete-btn-div").empty();
+    console.log($("athlete-btn-div"))
 
-    for (var i=0; i< topics.length; i++) {
+    for (var i = 0; i < topics.length; i++) {
         // create button variable
-        var athleteBtn = $("<button>")
+        var athleteBtn = $("<button>");
         //Add athlete's name to button.
         athleteBtn.text(topics[i]);
         //Assign a data attribute to each button.
         athleteBtn.attr("data-name", topics[i]);
-        //Add a class of athlete-btn 
+        //Add a class of athlete-btn
         athleteBtn.addClass("btn btn-primary  athlete-btn");
         //Append each button to the athlete-btn-div in the HTML.
         $("#athlete-btn-div").append(athleteBtn);
+        
     }
 }
 
@@ -33,9 +42,12 @@ function displayAthleteImages() {
 
     var athlete = $(this).attr("data-name");
     //Construct our query URL to access and obtain data from the GIPHY API.
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "&api_key=2sT3zhuvXKzfLZ7ajIbj1aczIM6K9BMK&limit=10";
+    var queryURL =
+        "https://api.giphy.com/v1/gifs/search?q=" +
+        athlete +
+        "&api_key=2sT3zhuvXKzfLZ7ajIbj1aczIM6K9BMK&limit=10";
 
-    //Our jQuery AJAX method. Perform AJAX GET request to the queryURL to get data from GIPHY API.
+    // jQuery AJAX method. Perform AJAX GET request to the queryURL to get data from GIPHY API.
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -47,16 +59,16 @@ function displayAthleteImages() {
             console.log(response);
             var results = response.data;
             //Display text to the user about how to play and pause a gif in the gif search results section.
-            $("#click-to-play-text").append("<h4>" + "Click a gif to play. Click again to pause." + "</h4>");
+            $("#click-to-play-text").append(
+                "<h4>" + "Click a gif to play. Click again to pause." + "</h4>"
+            );
 
             for (var i = 0; i < results.length; i++) {
-
-                // Only take action if the gif has an appropriate rating. 
+                // Only take action if the gif has an appropriate rating.
                 // This should not matter. Did extensive testing on this site and did not find pg-13 or r rated gifs for any of the athletes tested.
                 //But, adding this if statement just in case...
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-
-                    //Create div element to hold gif image.. 
+                    //Create div element to hold gif image..
                     var gifDiv = $("<div class='item'>");
 
                     //Save results[i].rating property. Store in rating variable.
@@ -68,7 +80,10 @@ function displayAthleteImages() {
                     //Need to give each gif/image some attributes so that the user can play and pause a gif on demand.
                     var athleteImage = $("<img>");
                     athleteImage.attr("src", results[i].images.fixed_height_still.url);
-                    athleteImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    athleteImage.attr(
+                        "data-still",
+                        results[i].images.fixed_height_still.url
+                    );
                     athleteImage.attr("data-animate", results[i].images.fixed_height.url);
                     athleteImage.attr("data-state", "still");
                     athleteImage.addClass("img-fluid gif border border-primary");
@@ -93,8 +108,6 @@ function displayAthleteImages() {
                         $("#results-div-col3").append(gifDiv);
                     }
                 }
-
-
             }
 
             //When the user clicks a gif in the search results section...
@@ -107,24 +120,23 @@ function displayAthleteImages() {
                 if (state === "still") {
                     $(this).attr("src", $(this).attr("data-animate"));
                     $(this).attr("data-state", "animate");
-                }
-                else {
+                } else {
                     $(this).attr("src", $(this).attr("data-still"));
                     $(this).attr("data-state", "still");
                 }
             });
-
         });
 }
 
 //When submit/add button is clicked in the "Add your favorite athlete" section, add athlete-input from the search box to topics array.
 $("#submit-button").on("click", function (event) {
-
     //The following code prevents the submit/add button from trying to submit the form.
     //Using a form so that the user can press Enter to search instead of clicking the button.
     event.preventDefault();
     //Grab the input from the text box and change the value to lower case.
-    var athleteInput = $("#athlete-input").val().toLowerCase();
+    var athleteInput = $("#athlete-input")
+        .val()
+        .toLowerCase();
 
     //Remove the athlete's name from text box after user clicks add/submit-button.
     $("#athlete-input").val("");
@@ -155,10 +167,11 @@ createButtons();
 //Create click event for all elements with a class of athlete-btn.
 $(document).on("click", ".athlete-btn", displayAthleteImages);
 
-//This is the function to display the gif image that appears in the top right corner of site on md sized screens. 
+//This is the function to display the gif image that appears in the top right corner of site on md sized screens.
 //Image appears right below header on sm or xs screens.
 function displayHeaderImage() {
-    var queryURL = "https://api.giphy.com/v1/stickers/search?q=soccerball&api_key=2sT3zhuvXKzfLZ7ajIbj1aczIM6K9BMK";
+    var queryURL =
+        "https://api.giphy.com/v1/stickers/search?q=soccerplayer&api_key=2sT3zhuvXKzfLZ7ajIbj1aczIM6K9BMK";
 
     //Our jQuery AJAX method. Perform AJAX GET request to the queryURL to get data from giphy API.
     $.ajax({
@@ -169,9 +182,9 @@ function displayHeaderImage() {
         //After the data from the AJAX request comes back.
         .done(function (response) {
             console.log(response);
-            var results = response.data
+            var results = response.data;
 
-            //Create div element to hold gif image.. 
+            //Create div element to hold gif image..
             var gifDiv = $("<div class='item'>");
 
             //Save response.data[5].fixed_width.url property. Store in headerImageUrl variable.
@@ -185,9 +198,10 @@ function displayHeaderImage() {
             //Prepend gif image to the div that was created to hold the gif image.
             gifDiv.append(headerImage);
 
-            $("#main-header-image").append(gifDiv).addClass("mt-2");
+            $("#main-header-image")
+                .append(gifDiv)
+                .addClass("mt-2");
         });
-
 }
 
 displayHeaderImage();
