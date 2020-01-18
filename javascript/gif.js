@@ -1,27 +1,22 @@
-//Create an array of strings, each one related to a topic (athletes). Save it to a variable called topics.
-var topics = ["lonzo ball", "ricky rubio", "jackie robinson", "draymond green", "javale mcgee", "jimmy garoppolo", "stephen curry", "babe ruth", "lamelo ball", "shaquille o'neal", "giannis antetokounmpo"]
+//Create an array of strings for athletes
+var topics = ["Messi", "lewandowski", "Alphonso Davies", "Manuel Neuer", "Joshua Zirkzee" ]
 //Create a variable for the button that the user can create and then click to display gifs from the GIPHY API.
 var athleteBtn;
-//Create variable for gif image.
+//create gif variable
 var athleteImage;
 
-function createButtons() {
-    //Take topics in array and create buttons in the HTML.
-    //Use a loop that appends a button for each string in the array.
-    //Dynamically generate buttons for each athlete in array.
+function createButtons(){
+    $("athlete-btn-div").empty();
 
-    //Deleting the initial athletes so I don't have duplicate buttons.
-    $("#athlete-btn-div").empty();
-
-    for (var i = 0; i < topics.length; i++) {
-        //Create variable for button.
-        var athleteBtn = $("<button>");
+    for (var i=0; i< topics.length; i++) {
+        // create button variable
+        var athleteBtn = $("<button>")
         //Add athlete's name to button.
         athleteBtn.text(topics[i]);
         //Assign a data attribute to each button.
         athleteBtn.attr("data-name", topics[i]);
-        //Add a class of athlete-btn to each button as well as other classes to change the color, padding, and margin of the button.
-        athleteBtn.addClass("btn btn-primary p-2 mr-3 mb-2 athlete-btn");
+        //Add a class of athlete-btn 
+        athleteBtn.addClass("btn btn-primary  athlete-btn");
         //Append each button to the athlete-btn-div in the HTML.
         $("#athlete-btn-div").append(athleteBtn);
     }
@@ -38,7 +33,7 @@ function displayAthleteImages() {
 
     var athlete = $(this).attr("data-name");
     //Construct our query URL to access and obtain data from the GIPHY API.
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + athlete + "&api_key=2sT3zhuvXKzfLZ7ajIbj1aczIM6K9BMK&limit=10";
 
     //Our jQuery AJAX method. Perform AJAX GET request to the queryURL to get data from GIPHY API.
     $.ajax({
@@ -163,7 +158,7 @@ $(document).on("click", ".athlete-btn", displayAthleteImages);
 //This is the function to display the gif image that appears in the top right corner of site on md sized screens. 
 //Image appears right below header on sm or xs screens.
 function displayHeaderImage() {
-    var queryURL = "https://api.giphy.com/v1/stickers/search?q=basketball&api_key=dc6zaTOxFJmzC";
+    var queryURL = "https://api.giphy.com/v1/stickers/search?q=soccerball&api_key=2sT3zhuvXKzfLZ7ajIbj1aczIM6K9BMK";
 
     //Our jQuery AJAX method. Perform AJAX GET request to the queryURL to get data from giphy API.
     $.ajax({
