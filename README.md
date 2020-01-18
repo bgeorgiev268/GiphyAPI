@@ -10,9 +10,18 @@ Technologies used to create site:
 
 
 HTML5
+
 CSS
+
 Bootstrap 
+
 Javascript
+
 JQuery
+
 AJAX
+
 GIPHY API
+
+
+working app here: https://bgeorgiev268.github.io/GiphyAPI/
